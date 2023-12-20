@@ -5,3 +5,6 @@ class Blog(models.Model):
     description = models.TextField()
     date = models.DateField()
 
+    #this is to display the blog post titles in the dashboard with the acutal title
+    def __str__(self):
+        return self.title

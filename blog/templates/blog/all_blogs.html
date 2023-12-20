@@ -1,9 +1,14 @@
 <h1>Hello Blog</h1>
 
-{% for blog in blogs %}
+<h2>Darren has written {{ blogs.count }} blog{{ blogs.count|pluralize }}</h2>
 
-    <h2>{{ blog.title }}</h2>
-    <h5>{{ blog.date }}</h5>
-    <p>{{ blog.description }}</p>
+{% for blog in blogs %}
+            {#  we get the blog:detail....here only the blog name from when we set the name #}
+            {#  of our app in the blog/urls.py page#}
+{#    This helps to distinguish which app or where the data is coming from so we use blog#}
+{#    if we had another app we would give that another name...this way django knows which one to use#}
+    <a href="{% url 'blog:detail' blog.id %}"><h2>{{ blog.title }}</h2></a>
+    <h5>{{ blog.date|date:'M d Y' }}</h5>
+    <p>{{ blog.description|truncatechars:100 }}</p>
 
 {% endfor %}
